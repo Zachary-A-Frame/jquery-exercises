@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+  <style>
+
+    img {
+      max-width: 70%;
+    }
+
+    .image-center {
+      display: block;
+      margin: 10px auto;
+    }
+
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <h1 id="title" class="text-center">Welcome to my moviesite.</h1>
+  <form class="row mb-5">
+    <div class="col-sm-6">
+      <input class="form-control" type="text" placeholder="Title">
+    </div>
+    <div class="col-sm-6">
+      <input class="form-control" type="text" placeholder="Rating">
+    </div>
+    <br>
+    <input type="submit" class="col-sm-1" value="Submit">
+  </form>
+</div>
+<div class="container" id="movies">
+
+</div>
+<!-- Build an application that uses jQuery to do the following:
+
+Contains a form with two inputs for a title and rating along with a button to submit the form.
+When the form is submitted, capture the values for each of the inputs and append them to the DOM along with a button to remove each title and rating from the DOM.
+When the button to remove is clicked, remove each title and rating from the DOM. -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+
+    $("form").on("submit", (e) => {
+        e.preventDefault()
+        let title = (e.target[0].value)
+        let rating = (e.target[1].value)
+        if (title.length >= 2 && rating >= 0 && rating <= 10) {
+            $("#movies").append(`<p id=$>${title} ${rating} <button>remove</button></p>`)
+            $("button").on("click", function() {$(this).parent().remove()})
+        } else {
+            alert("Title must be at least 2 characters long, rating must be above 0 and below 10.")
+        }
+
+    })
+
+</script>
+</body>
+
+</html>
